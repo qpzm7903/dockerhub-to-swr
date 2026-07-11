@@ -1,0 +1,30 @@
+# Example config for pointing at a REAL OpenAI-compatible backend
+# (e.g. your company's model endpoint) instead of the mock.
+#
+# Usage:
+#   docker run --rm \
+#     -e LITELLM_CONFIG=/app/litellm_config.real.yaml \
+#     -e BACKEND_API_KEY=sk-xxxx \
+#     -v $(pwd)/litellm_config.real.yaml:/app/litellm_config.real.yaml \
+#     litellm-claude-verify
+#
+# The model_name values MUST match the ANTHROPIC_DEFAULT_*_MODEL env vars
+# so Claude Code's requested model resolves to a real entry here.
+
+model_list:
+  - model_name: mock-sonnet          # keep names matching the env vars, or override the env vars
+    litellm_params:
+      model: openai/gpt-4o           # <-- your real model
+      api_base: https://your-openai-compatible-host/v1
+      api_key: os.environ/BACKEND_API_KEY
+  - model_name: mock-haiku
+    litellm_params:
+      model: openai/gpt-4o-mini
+      api_base: https://your-openai-compatible-host/v1
+      api_key: os.environ/BACKEND_API_KEY
+
+litellm_settings:
+  drop_params: true
+
+general_settings:
+  master_key: sk-verify-1234

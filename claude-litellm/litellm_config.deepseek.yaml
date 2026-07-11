@@ -1,0 +1,29 @@
+# Real-backend config: routes to DeepSeek (OpenAI-compatible).
+# The API key is injected at runtime via env (never stored in this file).
+#
+# Run with:
+#   docker run --rm \
+#     -e LITELLM_CONFIG=/app/litellm_config.deepseek.yaml \
+#     -e DEEPSEEK_API_KEY=sk-xxxx \
+#     -e VERIFY_MODEL=ds-pro \
+#     -e ANTHROPIC_MODEL=ds-pro \
+#     -e ANTHROPIC_DEFAULT_SONNET_MODEL=ds-pro \
+#     -e ANTHROPIC_DEFAULT_HAIKU_MODEL=ds-flash \
+#     -e ANTHROPIC_DEFAULT_OPUS_MODEL=ds-pro \
+#     litellm-claude-verify
+
+model_list:
+  - model_name: ds-pro
+    litellm_params:
+      model: deepseek/deepseek-v4-pro
+      api_key: os.environ/DEEPSEEK_API_KEY
+  - model_name: ds-flash
+    litellm_params:
+      model: deepseek/deepseek-v4-flash
+      api_key: os.environ/DEEPSEEK_API_KEY
+
+litellm_settings:
+  drop_params: true
+
+general_settings:
+  master_key: sk-verify-1234

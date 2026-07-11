@@ -1,0 +1,28 @@
+# Default (self-contained) config: routes the three Claude tiers to the
+# built-in mock OpenAI backend. No real credentials needed.
+#
+# To point at a REAL backend instead, copy litellm_config.real.example.yaml,
+# fill it in, and run the container with LITELLM_CONFIG=/app/your_config.yaml.
+
+model_list:
+  - model_name: mock-sonnet
+    litellm_params:
+      model: openai/mock-sonnet
+      api_base: http://localhost:8081/v1
+      api_key: sk-mock
+  - model_name: mock-haiku
+    litellm_params:
+      model: openai/mock-haiku
+      api_base: http://localhost:8081/v1
+      api_key: sk-mock
+  - model_name: mock-opus
+    litellm_params:
+      model: openai/mock-opus
+      api_base: http://localhost:8081/v1
+      api_key: sk-mock
+
+litellm_settings:
+  drop_params: true
+
+general_settings:
+  master_key: sk-verify-1234
