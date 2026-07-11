@@ -52,10 +52,10 @@ jobs:
 
       - name: build container image
         run: |
-          docker login -u cn-southwest-2@$HUAWEICLOUD_IAM_AK -p $HUAWEICLOUD_IAM_SK swr.cn-southwest-2.myhuaweicloud.com
+          docker login -u cn-south-1@$HUAWEICLOUD_IAM_AK -p $HUAWEICLOUD_IAM_SK swr.cn-south-1.myhuaweicloud.com
           set -ex
 
-          artifact_image_url=swr.cn-southwest-2.myhuaweicloud.com/gsc-hub/claude-litellm:${current_datetime}-x86_64
+          artifact_image_url=swr.cn-south-1.myhuaweicloud.com/qpzm7903-guangzhou/claude-litellm:${current_datetime}-x86_64
           ghcr_image_url=ghcr.io/${current_user}/claude-litellm:${current_datetime}-x86_64
 
           docker build -f claude-litellm/Dockerfile --no-cache -t ${artifact_image_url} .
